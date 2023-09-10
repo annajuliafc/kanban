@@ -1,0 +1,23 @@
+.board {
+    display: flex;
+    gap: 24px;
+    overflow: auto;
+    padding: 20px;
+}
+
+.buttonStyle {
+    flex: 1;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    height: 54px;
+    border: none;
+    color: #212529;
+    font-family: AvenirNext;
+    font-size: 16px;
+    padding: 16px;
+    text-align-last: start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 250px;
+}

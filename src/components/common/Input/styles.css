@@ -1,0 +1,28 @@
+.input {
+    margin: 24px 0;
+}
+
+.input label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-family: AvenirNext;
+    font-weight: 600;
+    color: #212121;
+}
+
+.input input {
+    background: #FFF;
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.input-color input {
+    padding: 8px 24px;
+    height: 40px;
+}

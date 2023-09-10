@@ -1,0 +1,12 @@
+.tag-insert {
+    display: flex;
+}
+
+.tag-insert .tag-input {
+    flex: 4;
+}
+
+.tag-insert .tag-button {
+    flex: 1;
+    
+}

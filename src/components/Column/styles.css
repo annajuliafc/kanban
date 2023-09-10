@@ -1,0 +1,27 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    border-radius: 5px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    min-height: 200px;
+}
+
+.column-title {
+    color: #FFF;
+    font-family: AvenirNextBold;
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.36px;
+    margin: 0 0 16px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

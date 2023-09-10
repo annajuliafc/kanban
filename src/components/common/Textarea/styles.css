@@ -1,0 +1,23 @@
+.textarea {
+    margin: 24px 0;
+}
+
+.textarea label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-family: AvenirNext;
+    font-weight: 600;
+    color: #212121;
+}
+
+.textarea textarea {
+    background: #FFF;
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.06);
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}

@@ -1,0 +1,17 @@
+.home {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-title {
+    margin: 40px 40px 20px;
+    font-family: AvenirNextBold;
+    font-weight: 700;
+    color: #212529;
+    font-size: 32px;
+    letter-spacing: -0.64px;
+}
+
+.home-board {
+    margin: 0px 20px 20px;
+}
