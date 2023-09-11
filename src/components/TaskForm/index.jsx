@@ -48,17 +48,16 @@ export default function TaskForm({
   };
 
   const iconCss = {
-    float: 'right',
-    marginLeft: '8px',
-    marginBottom: '-4px'
-  }
+    float: "right",
+    marginLeft: "8px",
+    marginBottom: "-4px",
+  };
 
   const updateTags = (event) => {
     setTags((tags) => [...tags, event]);
   };
 
   const deleteTag = (tagToDelete) => () => {
-    console.log(tagToDelete);
     setTags(
       tags.filter((tag) => {
         return tag !== tagToDelete;
@@ -83,6 +82,9 @@ export default function TaskForm({
           description,
           tags,
         });
+    setTitle("");
+    setDescription("");
+    setTags([]);
   };
 
   const taskDelete = () => {
@@ -104,7 +106,6 @@ export default function TaskForm({
         changed={(value) => setTitle(value)}
       />
       <Textarea
-        required={true}
         label="Descrição"
         placeholder="Digite sua descrição"
         value={description}

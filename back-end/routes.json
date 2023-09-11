@@ -1,7 +1,0 @@
-{
-  "/board": "/board",
-  "/board/columns/:id": "/board.columns/:id",
-  "/board/tasks/:id": "/board.tasks/:id",
-  "/board/columns": "/board.columns",
-  "/board/tasks": "/board.tasks"
-}

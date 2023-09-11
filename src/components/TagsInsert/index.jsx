@@ -10,6 +10,7 @@ export default function TagInsert({ updateTags }) {
 
   const handleTagInsert = () => {
     updateTags(tagInput);
+    setTagInput("")
   };
 
   return (

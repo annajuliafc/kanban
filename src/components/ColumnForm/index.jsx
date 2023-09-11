@@ -15,7 +15,7 @@ export default function ColumnForm({
 }) {
   const [title, setTitle] = useState(column?.title || "");
   const [color, setColor] = useState(column?.color || "#0000ff");
-  const [taskIds] = useState(column?.taskIds || []);
+  const [taskIds, setTaskIds] = useState(column?.taskIds || []);
 
   let id = null;
   if (column) {
@@ -65,6 +65,9 @@ export default function ColumnForm({
           color,
           taskIds,
         });
+    setTitle("");
+    setColor("#0000ff");
+    setTaskIds([]);
   };
 
   const columnDelete = () => {

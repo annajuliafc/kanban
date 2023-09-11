@@ -1,15 +1,14 @@
 {
   "board": {
-    "title": "Kanban do projeto",
+    "title": "Meu Kanban",
     "columns": [
       {
         "id": "column-1",
         "title": "📝  To Do",
         "color": "#5CC4FF",
         "taskIds": [
-          1,
-          6,
-          2
+          10,
+          11
         ]
       },
       {
@@ -17,7 +16,7 @@
         "title": "💻  In Progress",
         "color": "#945AD1",
         "taskIds": [
-          6
+          12
         ]
       },
       {
@@ -25,8 +24,7 @@
         "title": "🚀  Done",
         "color": "#59D090",
         "taskIds": [
-          4,
-          5
+          4
         ]
       },
       {
@@ -40,68 +38,50 @@
     ],
     "tasks": [
       {
-        "id": 1,
-        "title": "Task 1",
-        "description": "Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva",
-        "tags": [
-          "rocketseat"
-        ],
-        "columnId": "column-1"
-      },
-      {
-        "id": 3,
-        "title": "Task 3",
-        "description": "Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível",
-        "tags": [
-          "rocketseat",
-          "desafio"
-        ],
-        "columnId": "column-1"
-      },
-      {
-        "id": 6,
-        "title": "Task 6",
-        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-        "tags": [
-          "rocketseat",
-          "desafio"
-        ],
-        "columnId": "column-1"
-      },
-      {
         "id": 4,
-        "title": "Task 4",
-        "description": "Me alimentar, aproveitando um momento de descanso para recarregar minhas energias durante o almoço",
+        "columnId": "column-3",
+        "title": "Projeto finalizado",
+        "description": "",
         "tags": [
-          "autocuidado"
-        ],
-        "columnId": "column-3"
+          "Primeira versão"
+        ]
       },
       {
-        "id": 5,
-        "title": "Task 5",
-        "description": "Sempre me lembrar de manter minha autenticidade e espalhar amor",
+        "id": 10,
+        "columnId": "column-2",
+        "title": "Correção 'Warning'",
+        "description": "Corrigir 'Warning' em alguns trechos no componente Board.",
         "tags": [
-          "autocuidado"
-        ],
-        "columnId": "column-3"
-      },
-      {
-        "id": 2,
-        "title": "Task 2",
-        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-        "tags": [
-          "rocketseat",
-          "desafio"
-        ],
-        "columnId": "column-2"
+          "Correção",
+          "Bugs"
+        ]
       },
       {
         "id": 9,
         "columnId": "column-4",
         "title": "Sucesooooo",
         "description": "Tudo funcionando",
-        "tags": []
+        "tags": [
+          "Testess"
+        ]
+      },
+      {
+        "id": 11,
+        "columnId": "column-1",
+        "title": "Optimização",
+        "description": "Criação de um back-end em Node.js",
+        "tags": [
+          "Melhorias"
+        ]
+      },
+      {
+        "id": 12,
+        "columnId": "column-2",
+        "title": "Testes Unitários",
+        "description": "Realização de testes unitários",
+        "tags": [
+          "Melhorias"
+        ]
       }
     ]
   }

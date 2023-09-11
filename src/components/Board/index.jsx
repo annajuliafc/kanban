@@ -46,7 +46,6 @@ export default function Board({ board }) {
   );
 
   const updateBoard = (updatedBoard) => {
-    console.log("updatedBoard", updatedBoard);
     axios
       .put("http://localhost:3000/board", updatedBoard)
       .then((response) => {
