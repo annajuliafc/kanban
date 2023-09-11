@@ -1,11 +1,13 @@
 import "./styles.css";
 import PropTypes from "prop-types";
-import { useSortable } from "@dnd-kit/sortable";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import Tags from "../Tags";
-import { IconButton, Tooltip } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import TaskForm from "../TaskForm";
+import { useSortable } from "@dnd-kit/sortable";
+import { Dialog, IconButton, Tooltip } from "@mui/material";
+import { useState } from "react";
 
-export default function Task({ color, task, deleteTask }) {
+export default function Task({ color, task, editTask, deleteTask }) {
   const { setNodeRef, attributes, listeners } = useSortable({
     id: task.id,
     data: {
@@ -14,19 +16,36 @@ export default function Task({ color, task, deleteTask }) {
     },
   });
 
-  const taskDelete = () => {
-    deleteTask(task.id);
+  const [open, setOpen] = useState(false);
+
+  const taskFormDialogOpen = () => {
+    setOpen(true);
+  };
+
+  const taskFormDialogClose = () => {
+    setOpen(false);
   };
 
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners} className="task">
-      <Tooltip title="Delete">
-        <IconButton onClick={taskDelete}>
-          <DeleteIcon />
+    <div className="task">
+      <Tooltip title="Abrir tarefa" className="task-action">
+        <IconButton onClick={taskFormDialogOpen}>
+          <OpenInFullIcon fontSize="small"/>
         </IconButton>
       </Tooltip>
-      <h3 className="task-title">{task.title}</h3>
-      <Tags tags={task.tags} color={color}></Tags>
+      <div ref={setNodeRef} {...attributes} {...listeners}>
+        <h3 className="task-title">{task.title}</h3>
+        <Tags tags={task.tags} color={color}></Tags>
+      </div>
+      <Dialog open={open} onClose={taskFormDialogClose} fullWidth={true} maxWidth="sm">
+        <TaskForm
+          editTask={editTask}
+          deleteTask={deleteTask}
+          columnId={task.columnId}
+          color={color}
+          task={task}
+        ></TaskForm>
+      </Dialog>
     </div>
   );
 }
@@ -35,4 +54,5 @@ Task.propTypes = {
   color: PropTypes.string,
   task: PropTypes.object.isRequired,
   deleteTask: PropTypes.func,
+  editTask: PropTypes.func,
 };

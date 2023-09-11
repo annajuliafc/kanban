@@ -6,18 +6,18 @@ export default function Button({
   buttonCssStyle,
   text,
   icon,
+  iconCss,
   clickFunction,
-  type
+  type,
 }) {
   return (
-    <button className={buttonClassStyle} style={buttonCssStyle} onClick={clickFunction} type={type}>
-      {icon ? (
-        <span>
-          <img src={icon} alt={text} />
-        </span>
-      ) : (
-        ""
-      )}
+    <button
+      className={buttonClassStyle}
+      style={buttonCssStyle}
+      onClick={clickFunction}
+      type={type}
+    >
+      {icon ? <span style={iconCss}>{icon}</span> : ""}
       {text}
     </button>
   );
@@ -27,7 +27,8 @@ Button.propTypes = {
   buttonClassStyle: PropTypes.string,
   buttonCssStyle: PropTypes.object,
   text: PropTypes.string,
-  icon: PropTypes.string,
-  clickFunction : PropTypes.func,
-  type: PropTypes.string
+  icon: PropTypes.object,
+  iconCss: PropTypes.object,
+  clickFunction: PropTypes.func,
+  type: PropTypes.string,
 };

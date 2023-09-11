@@ -1,33 +1,48 @@
+import "./styles.css";
 import React, { useMemo } from "react";
 import Task from "../Task";
 import Button from "../common/Button";
-import WhitePlusIcon from "../../assets/icons/white-plus.png";
-import "./styles.css";
 import PropTypes from "prop-types";
-import { SortableContext } from "@dnd-kit/sortable";
 import Dialog from "@mui/material/Dialog";
 import TaskForm from "../TaskForm";
+import AddIcon from "@mui/icons-material/Add";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ColumnFormModal from "../ColumnForm";
+import { SortableContext } from "@dnd-kit/sortable";
+import { IconButton, Tooltip } from "@mui/material";
 
 export default function Column({
   column,
   title,
   color,
   tasks,
-  updateTask,
+  editTask,
   deleteTask,
+  createTask,
+  editColumn,
+  deleteColumn,
 }) {
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
 
-  const [open, setOpen] = React.useState(false);
+  const [openTaskForm, setOpenTaskForm] = React.useState(false);
+  const [openColumnForm, setOpenColumnForm] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const taskFormDialogOpen = () => {
+    setOpenTaskForm(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const taskFormDialogClose = () => {
+    setOpenTaskForm(false);
+  };
+
+  const columnFormDialogOpen = () => {
+    setOpenColumnForm(true);
+  };
+
+  const columnFormDialogClose = () => {
+    setOpenColumnForm(false);
   };
 
   const buttonCssStyle = {
@@ -48,8 +63,13 @@ export default function Column({
       style={{ background: `${color}CC`, borderTop: `5px solid ${color}` }}
     >
       <div>
+        <Tooltip title="Abrir coluna" className="column-action">
+          <IconButton onClick={columnFormDialogOpen}>
+            <MoreVertIcon sx={{ marginTop: "-8px" }} />
+          </IconButton>
+        </Tooltip>
         <h2 className="column-title">{title}</h2>
-        <SortableContext items={tasksIds}>
+        <SortableContext items={tasksIds} id={column.id}>
           <div className="tasks">
             {tasks.map((task) => (
               <Task
@@ -57,6 +77,7 @@ export default function Column({
                 task={task}
                 color={color}
                 deleteTask={deleteTask}
+                editTask={editTask}
               />
             ))}
           </div>
@@ -64,16 +85,23 @@ export default function Column({
       </div>
       <Button
         text="Adicionar outro cartão"
-        icon={WhitePlusIcon}
+        icon={<AddIcon sx={{ color: "rgba(255, 255, 255, 0.8)" }} />}
         buttonCssStyle={buttonCssStyle}
-        clickFunction={handleClickOpen}
+        clickFunction={taskFormDialogOpen}
       />
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={openTaskForm} onClose={taskFormDialogClose} fullWidth={true} maxWidth="sm">
         <TaskForm
-          updateTask={updateTask}
+          createTask={createTask}
           columnId={column.id}
           color={color}
         ></TaskForm>
+      </Dialog>
+      <Dialog open={openColumnForm} onClose={columnFormDialogClose} fullWidth={true} maxWidth="sm">
+        <ColumnFormModal
+          editColumn={editColumn}
+          deleteColumn={deleteColumn}
+          column={column}
+        />
       </Dialog>
     </section>
   );
@@ -84,6 +112,9 @@ Column.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string,
   tasks: PropTypes.array.isRequired,
-  updateTask: PropTypes.func.isRequired,
-  deleteTask: PropTypes.func.isRequired,
+  editTask: PropTypes.func,
+  deleteTask: PropTypes.func,
+  createTask: PropTypes.func,
+  editColumn: PropTypes.func,
+  deleteColumn: PropTypes.func,
 };

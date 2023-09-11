@@ -12,10 +12,19 @@ export default function Home() {
     axios
       .get("http://localhost:3000/board")
       .then(function (response) {
-        setBoard(response.data);
+        const boardWithTasks = {
+          ...response.data,
+          columns: response.data.columns.map((column) => ({
+            ...column,
+            tasks: response.data.tasks.filter(
+              (task) => task.columnId === column.id
+            ),
+          })),
+        };
+        setBoard(boardWithTasks);
       })
       .catch(function (error) {
-        console.error("Erro ao buscar os dados do board:", error);
+        console.error("Erro ao buscar os dados do quadro:", error);
         setError(true);
       });
   }, []);
@@ -25,8 +34,7 @@ export default function Home() {
       <div className="home">
         <Alert severity="error">
           <AlertTitle>Erro</AlertTitle>
-          Erro ao buscar os dados do kanban —
-          <strong>tente novamente mais tarde!</strong>
+          Erro ao buscar os dados — <strong>tente novamente mais tarde!</strong>
         </Alert>
       </div>
     );

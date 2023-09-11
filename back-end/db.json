@@ -3,94 +3,91 @@
     "title": "Kanban do projeto",
     "columns": [
       {
-        "id": "todo",
-        "title": "To Do",
+        "id": "column-1",
+        "title": "📝  To Do",
         "color": "#5CC4FF",
-        "tasks": [
-          {
-            "id": 1,
-            "title": "Manter a ofensiva 🔥",
-            "description": "Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva",
-            "tags": [
-              "rocketseat"
-            ]
-          },
-          {
-            "id": 2,
-            "title": "#boraCodar um Kanban 🧑‍💻",
-            "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-            "tags": [
-              "rocketseat",
-              "desafio"
-            ]
-          },
-          {
-            "id": 3,
-            "title": "Conferir o novo desafio 🚀",
-            "description": "Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível",
-            "tags": [
-              "rocketseat",
-              "desafio"
-            ]
-          }
+        "taskIds": [
+          1,
+          2,
+          3
         ]
       },
       {
-        "id": "in_progress",
-        "title": "In Progress",
+        "id": "column-2",
+        "title": "💻  In Progress",
         "color": "#945AD1",
-        "tasks": [
-          {
-            "id": 6,
-            "title": "#boraCodar uma página de login 🧑‍💻",
-            "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-            "tags": [
-              "rocketseat",
-              "desafio"
-            ]
-          },
-          {
-            "id": 7,
-            "title": "#boraCodar uma página de clima 🧑‍💻",
-            "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-            "tags": [
-              "rocketseat",
-              "desafio"
-            ]
-          },
-          {
-            "id": 8,
-            "title": "#boraCodar um conversor 🧑‍💻",
-            "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
-            "tags": [
-              "rocketseat",
-              "desafio"
-            ]
-          }
+        "taskIds": [
+          6,
+          7,
+          8
         ]
       },
       {
-        "id": "done",
-        "title": "Done",
+        "id": "column-3",
+        "title": "🚀  Done",
         "color": "#59D090",
-        "tasks": [
-          {
-            "id": 4,
-            "title": "Almoçar 🥗",
-            "description": "Me alimentar, aproveitando um momento de descanso para recarregar minhas energias durante o almoço",
-            "tags": [
-              "autocuidado"
-            ]
-          },
-          {
-            "id": 5,
-            "title": "Ser incrível 😎",
-            "description": "Sempre me lembrar de manter minha autenticidade e espalhar amor",
-            "tags": [
-              "autocuidado"
-            ]
-          }
+        "taskIds": [
+          4,
+          5
         ]
+      }
+    ],
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Task 1",
+        "description": "Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva",
+        "tags": [ "rocketseat" ],
+        "columnId": "column-1"
+      },
+      {
+        "id": 2,
+        "title": "Task 2",
+        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
+        "tags": [ "rocketseat", "desafio" ],
+        "columnId": "column-1"
+      },
+      {
+        "id": 3,
+        "title": "Task 3",
+        "description": "Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível",
+        "tags": [ "rocketseat", "desafio" ],
+        "columnId": "column-1"
+      },
+      {
+        "id": 4,
+        "title": "Task 4",
+        "description": "Me alimentar, aproveitando um momento de descanso para recarregar minhas energias durante o almoço",
+        "tags": [ "autocuidado" ],
+        "columnId": "column-3"
+      },
+      {
+        "id": 5,
+        "title": "Task 5",
+        "description": "Sempre me lembrar de manter minha autenticidade e espalhar amor",
+        "tags": [ "autocuidado" ],
+        "columnId": "column-3"
+      },
+      {
+        "id": 6,
+        "title": "Task 6",
+        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
+        "tags": [ "rocketseat", "desafio" ],
+        "columnId": "column-2"
+      },
+      {
+        "id": 7,
+        "title": "Task 7",
+        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
+        "tags": [ "rocketseat", "desafio" ],
+        "columnId": "column-2"
+      },
+      {
+        "id": 8,
+        "title": "Task 8",
+        "description": "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
+        "tags": [ "rocketseat", "desafio" ],
+        "columnId": "column-2"
       }
     ]
   }

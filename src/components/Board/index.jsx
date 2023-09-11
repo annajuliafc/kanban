@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../common/Button";
 import styles from "./styles.module.css";
 import Column from "../Column";
-import PlusIcon from "../../assets/icons/plus.png";
 import PropTypes from "prop-types";
+import Task from "../Task";
+import ColumnFormModal from "../ColumnForm";
+import Dialog from "@mui/material/Dialog";
+import AddIcon from "@mui/icons-material/Add";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
-import Task from "../Task";
-import axios from "axios";
-import ColumnFormModal from "../ColumnForm";
-import Dialog from "@mui/material/Dialog";
 
 export default function Board({ board }) {
   const [columns, setColumns] = useState(board.columns);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(board.tasks);
 
   const [activeTask, setActiveTask] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setColumns(board.columns);
-    setTasks(board.columns.flatMap((column) => column.tasks));
+    console.log(board);
   }, [board]);
 
   const handleClickOpen = () => {
@@ -32,38 +30,85 @@ export default function Board({ board }) {
     setOpen(false);
   };
 
-  const updateTasks = (updatedTask) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === updatedTask.id ? updatedTask : task
-    );
-    setTasks(updatedTasks);
-    axios.put(`http://localhost:3000/tasks/${updatedTask.id}`, updatedTask);
+  const editColumn = (column) => {
+    console.log(column);
+    // Logica para editar colunas
   };
 
-  const createTask = (columnId) => {
-    const newTask = {
-      id: tasks.length + 1,
-      columnId,
-      title: `Task ${tasks.length + 1}`,
-      description: "",
-      tags: [],
-    };
-    setTasks([...tasks, newTask]);
+  const createColumn = (column) => {
+    console.log(column);
+    // Logica para criar colunas
+  };
+
+  const deleteColumn = (id) => {
+    console.log(id);
+    // Logica para deletar colunas
+  };
+
+  const editTask = (task) => {
+    console.log(task);
+    // Logica para editar tarefas
+  };
+
+  const createTask = (task) => {
+    console.log(task);
+    // Logica para criar tarefas
   };
 
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:3000/tasks/${id}`);
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
+    console.log(id);
+    // Logica para deletar tarefas
   };
 
-  const onDragStart = (event) => {
+  return columns && tasks ? (
+    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+      <div className={styles.board}>
+        {columns.map((column) => (
+          <Column
+            key={column.id}
+            column={column}
+            title={column.title}
+            color={column.color}
+            tasks={tasks.filter((task) => task.columnId === column.id)}
+            editTask={editTask}
+            deleteTask={deleteTask}
+            createTask={createTask}
+            editColumn={editColumn}
+            deleteColumn={deleteColumn}
+          />
+        ))}
+        <Button
+          buttonClassStyle={styles.buttonStyle}
+          text="Adicionar outra coluna"
+          icon={<AddIcon sx={{ color: "#212529" }} />}
+          clickFunction={handleClickOpen}
+        />
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth={true}
+          maxWidth="sm"
+        >
+          <ColumnFormModal createColumn={createColumn} />
+        </Dialog>
+      </div>
+      {createPortal(
+        <DragOverlay>{activeTask && <Task task={activeTask} />}</DragOverlay>,
+        document.body
+      )}
+    </DndContext>
+  ) : (
+    ""
+  );
+
+  function onDragStart(event) {
     if (event.active.data.current?.type === "Task") {
       setActiveTask(event.active.data.current.task);
+      return;
     }
-  };
+  }
 
-  const onDragEnd = (event) => {
+  async function onDragEnd(event) {
     setActiveTask(null);
 
     const { active, over } = event;
@@ -81,63 +126,35 @@ export default function Board({ board }) {
       return;
     } else if (isActiveATask) {
       if (isActiveATask && isOverATask) {
-        setTasks((currentTasks) => {
-          const activeIndex = currentTasks.findIndex((t) => t.id === activeId);
-          const overIndex = currentTasks.findIndex((t) => t.id === overId);
+        setTasks(
+          (tasks) => {
+            const activeIndex = tasks.findIndex((t) => t.id === activeId);
+            const overIndex = tasks.findIndex((t) => t.id === overId);
 
-          if (currentTasks[activeIndex].columnId !== currentTasks[overIndex].columnId) {
-            currentTasks[activeIndex].columnId = currentTasks[overIndex].columnId;
-            return arrayMove(currentTasks, activeIndex, overIndex - 1);
-          }
+            if (tasks[activeIndex].columnId !== tasks[overIndex].columnId) {
+              tasks[activeIndex].columnId = tasks[overIndex].columnId;
+              return arrayMove(tasks, activeIndex, overIndex - 1);
+            }
 
-          return arrayMove(currentTasks, activeIndex, overIndex);
+            return arrayMove(tasks, activeIndex, overIndex);
+          },
+          () => {}
+        );
+
+        var updatedColumns = columns;
+
+        updatedColumns.forEach((column) => {
+          const filteredTasks = tasks.filter(
+            (task) => task.columnId === column.id
+          );
+          const taskIds = filteredTasks.map((task) => task.id);
+          column.taskIds = taskIds;
         });
-      }
 
-      const isOverAColumn = over.data.current?.type === "Column";
-
-      if (isActiveATask && isOverAColumn) {
-        setTasks((currentTasks) => {
-          const activeIndex = currentTasks.findIndex((t) => t.id === activeId);
-          currentTasks[activeIndex].columnId = overId;
-          return arrayMove(currentTasks, activeIndex, activeIndex);
-        });
+        setColumns(updatedColumns);
       }
     }
-  };
-
-  return (
-    <DndContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <div className={styles.board}>
-        {columns.map((column) => (
-          <Column
-            key={column.id}
-            column={column}
-            title={column.title}
-            color={column.color}
-            tasks={tasks.filter((task) => task.columnId === column.id)}
-            updateTask={updateTasks}
-            deleteTask={deleteTask}
-          />
-        ))}
-        <Button
-          buttonClassStyle={styles.buttonStyle}
-          text="Adicionar outra coluna"
-          icon={PlusIcon}
-          clickFunction={handleClickOpen}
-        />
-        <Dialog open={open} onClose={handleClose}>
-          <ColumnFormModal updateColumns={updateColumns} />
-        </Dialog>
-      </div>
-      {createPortal(
-        <DragOverlay>
-          {activeTask && <Task task={activeTask} deleteTask={deleteTask} />}
-        </DragOverlay>,
-        document.body
-      )}
-    </DndContext>
-  );
+  }
 }
 
 Board.propTypes = {

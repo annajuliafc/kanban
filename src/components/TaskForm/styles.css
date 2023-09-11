@@ -12,3 +12,10 @@
     font-size: 32px;
     font-weight: 400;
 }
+
+.form-action {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    justify-content: end;
+}

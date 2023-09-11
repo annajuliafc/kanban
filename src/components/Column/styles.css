@@ -10,6 +10,10 @@
     min-height: 200px;
 }
 
+.column-action {
+    float: right;
+}
+
 .column-title {
     color: #FFF;
     font-family: AvenirNextBold;

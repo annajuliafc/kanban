@@ -1,14 +1,19 @@
 import "./styles.css";
 import PropTypes from "prop-types";
-import Tag from "../common/Tag";
+import { Chip, Stack } from "@mui/material";
 
 export default function Tags({ tags, color }) {
-    
   return (
     <div className="tags">
-      {tags.map((tag, index) => (
-        <Tag key={index} text={tag} color={color} />
-      ))}
+      <Stack direction="row" spacing={1}>
+        {tags.map((tag, index) => (
+          <Chip
+            key={index}
+            label={tag}
+            style={{ backgroundColor: `${color}`, color: "white", fontFamily: 'AvenirNext' }}
+          />
+        ))}
+      </Stack>
     </div>
   );
 }

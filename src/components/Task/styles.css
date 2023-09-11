@@ -14,3 +14,7 @@
     letter-spacing: -0.32px;
     margin-bottom: 16px;
 }
+
+.task-action {
+    float: right;
+}
