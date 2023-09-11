@@ -82,9 +82,9 @@ export default function TaskForm({
           description,
           tags,
         });
-    setTitle("");
-    setDescription("");
-    setTags([]);
+    !editTask && setTitle("");
+    !editTask && setDescription("");
+    !editTask && setTags([]);
   };
 
   const taskDelete = () => {

@@ -1,11 +1,11 @@
 {
   "board": {
-    "title": "Meu Kanban",
+    "title": "Projeto Kanban",
     "columns": [
       {
         "id": "column-1",
         "title": "📝  To Do",
-        "color": "#5CC4FF",
+        "color": "#9f9393",
         "taskIds": [
           10,
           11
@@ -14,7 +14,7 @@
       {
         "id": "column-2",
         "title": "💻  In Progress",
-        "color": "#945AD1",
+        "color": "#2a2fbb",
         "taskIds": [
           12
         ]
@@ -22,7 +22,7 @@
       {
         "id": "column-3",
         "title": "🚀  Done",
-        "color": "#59D090",
+        "color": "#21c7ca",
         "taskIds": [
           4
         ]
@@ -68,10 +68,11 @@
       {
         "id": 11,
         "columnId": "column-1",
-        "title": "Optimização",
+        "title": "Optimização do Back-end",
         "description": "Criação de um back-end em Node.js",
         "tags": [
-          "Melhorias"
+          "Melhorias",
+          "Back-end"
         ]
       },
       {

@@ -65,9 +65,9 @@ export default function ColumnForm({
           color,
           taskIds,
         });
-    setTitle("");
-    setColor("#0000ff");
-    setTaskIds([]);
+    !editColumn && setTitle("");
+    !editColumn && setColor("#0000ff");
+    !editColumn && setTaskIds([]);
   };
 
   const columnDelete = () => {
