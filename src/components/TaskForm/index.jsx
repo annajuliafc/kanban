@@ -9,15 +9,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import { Chip, Stack } from "@mui/material";
+import useBoardContext from "../../context/BoardContext/useBoardContext";
 
-export default function TaskForm({
-  editTask,
-  deleteTask,
-  createTask,
-  task,
-  columnId,
-  color,
-}) {
+export default function TaskForm({ task, columnId, color }) {
+  const { createTask, editTask, deleteTask } = useBoardContext();
   const [title, setTitle] = useState(task?.title || "");
   const [description, setDescription] = useState(task?.description || "");
   const [tags, setTags] = useState(task?.tags || []);
@@ -29,7 +24,6 @@ export default function TaskForm({
     background: "#662549",
     border: "2px solid #662549",
     color: "white",
-    fontFamily: "AvenirNext",
     fontSize: "16px",
     borderRadius: "8px",
     padding: "16px",
@@ -40,7 +34,6 @@ export default function TaskForm({
     background: "none",
     border: "2px solid #662549",
     color: "#662549",
-    fontFamily: "AvenirNext",
     fontSize: "16px",
     borderRadius: "8px",
     padding: "16px",
@@ -67,7 +60,7 @@ export default function TaskForm({
 
   const onSave = (event) => {
     event.preventDefault();
-    editTask
+    task
       ? editTask({
           id,
           columnId,
@@ -82,18 +75,14 @@ export default function TaskForm({
           description,
           tags,
         });
-    !editTask && setTitle("");
-    !editTask && setDescription("");
-    !editTask && setTags([]);
-  };
-
-  const taskDelete = () => {
-    deleteTask(task.id);
+    !task && setTitle("");
+    !task && setDescription("");
+    !task && setTags([]);
   };
 
   return (
     <form className="form" onSubmit={onSave}>
-      {editTask ? (
+      {task ? (
         <h2>Vizualizar tarefa</h2>
       ) : (
         <h2>Preencha os dados para criar uma tarefa</h2>
@@ -128,14 +117,14 @@ export default function TaskForm({
         ))}
       </Stack>
       <div className="form-action">
-        {editTask ? (
+        {task ? (
           <Button
             buttonCssStyle={deleteButtonCssStyle}
             type="button"
             text="Excluir"
             icon={<DeleteIcon sx={{ color: "#662549" }} fontSize="small" />}
             iconCss={iconCss}
-            clickFunction={taskDelete}
+            clickFunction={() => deleteTask(task.id)}
           />
         ) : (
           ""
@@ -144,13 +133,13 @@ export default function TaskForm({
           buttonCssStyle={buttonCssStyle}
           iconCss={iconCss}
           icon={
-            editTask ? (
+            task ? (
               <EditIcon sx={{ color: "white" }} fontSize="small" />
             ) : (
               <SaveIcon sx={{ color: "white" }} fontSize="small" />
             )
           }
-          text={editTask ? "Editar" : "Salvar"}
+          text={task ? "Editar" : "Salvar"}
         />
       </div>
     </form>
@@ -158,9 +147,6 @@ export default function TaskForm({
 }
 
 TaskForm.propTypes = {
-  editTask: PropTypes.func,
-  deleteTask: PropTypes.func,
-  createTask: PropTypes.func,
   task: PropTypes.object,
   columnId: PropTypes.string.isRequired,
   color: PropTypes.string,

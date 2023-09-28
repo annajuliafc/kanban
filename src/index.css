@@ -8,6 +8,11 @@
     src: url(./assets/fonts/avenir-next/AvenirNextLTPro-Bold.otf);
 }
 
+:root {
+    --font: AvenirNext;
+    --fontBold: AvenirNextBold;
+}
+
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -15,6 +20,11 @@ html {
 
 body {
     margin: 0;
+    font-family: var(--font);
+}
+
+::placeholder {
+    font-family: var(--font);
 }
 
 main {
@@ -40,7 +50,6 @@ hr {
 }
 
 pre {
-    font-family: monospace, monospace;
     font-size: 1em;
 }
 
@@ -62,7 +71,6 @@ strong {
 code,
 kbd,
 samp {
-    font-family: monospace, monospace;
     font-size: 1em;
 }
 
@@ -95,7 +103,6 @@ input,
 optgroup,
 select,
 textarea {
-    font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
     margin: 0;

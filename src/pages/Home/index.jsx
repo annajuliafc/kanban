@@ -1,33 +1,10 @@
 import "./styles.css";
-import { useEffect, useState } from "react";
 import Board from "../../components/Board";
-import axios from "axios";
 import { Alert, AlertTitle } from "@mui/material";
+import useBoardContext from "../../context/BoardContext/useBoardContext";
 
 export default function Home() {
-  const [board, setBoard] = useState(null);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/board")
-      .then(function (response) {
-        const boardWithTasks = {
-          ...response.data,
-          columns: response.data.columns.map((column) => ({
-            ...column,
-            tasks: response.data.tasks.filter(
-              (task) => task.columnId === column.id
-            ),
-          })),
-        };
-        setBoard(boardWithTasks);
-      })
-      .catch(function (error) {
-        console.error("Erro ao buscar os dados do quadro:", error);
-        setError(true);
-      });
-  }, []);
+  const { board, error } = useBoardContext();
 
   if (error) {
     return (

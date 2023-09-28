@@ -7,8 +7,20 @@
         "title": "📝  To Do",
         "color": "#9f9393",
         "taskIds": [
-          10,
-          11
+          11,
+          10
+        ],
+        "tasks": [
+          {
+            "id": 11,
+            "columnId": "column-1",
+            "title": "Optimização do Back-end",
+            "description": "Criação de um back-end em Node.js",
+            "tags": [
+              "Melhorias",
+              "Back-end"
+            ]
+          }
         ]
       },
       {
@@ -16,7 +28,28 @@
         "title": "💻  In Progress",
         "color": "#2a2fbb",
         "taskIds": [
-          12
+          11
+        ],
+        "tasks": [
+          {
+            "id": 10,
+            "columnId": "column-2",
+            "title": "Correção 'Warning'",
+            "description": "Corrigir 'Warning' em alguns trechos no componente Board.",
+            "tags": [
+              "Correção",
+              "Bugs"
+            ]
+          },
+          {
+            "id": 12,
+            "columnId": "column-2",
+            "title": "Testes Unitários",
+            "description": "Realização de testes unitários",
+            "tags": [
+              "Melhorias"
+            ]
+          }
         ]
       },
       {
@@ -24,26 +57,49 @@
         "title": "🚀  Done",
         "color": "#21c7ca",
         "taskIds": [
-          4
+          11
+        ],
+        "tasks": [
+          {
+            "id": 13,
+            "columnId": "column-3",
+            "title": "Versão inicial finalizada",
+            "description": "",
+            "tags": [
+              "Primeira versão"
+            ]
+          }
         ]
       },
       {
         "id": "column-4",
-        "title": "Teste sucesso 🤞",
-        "color": "#ffa200",
+        "title": "Sucessooo 🤞",
+        "color": "#f5c747",
         "taskIds": [
-          9
+          14
+        ],
+        "tasks": [
+          {
+            "id": 14,
+            "columnId": "column-4",
+            "title": "Teste do sucesso!!",
+            "description": "",
+            "tags": [
+              "Ihuul"
+            ]
+          }
         ]
       }
     ],
     "tasks": [
       {
-        "id": 4,
-        "columnId": "column-3",
-        "title": "Projeto finalizado",
-        "description": "",
+        "id": 11,
+        "columnId": "column-1",
+        "title": "Optimização do Back-end",
+        "description": "Criação de um back-end em Node.js",
         "tags": [
-          "Primeira versão"
+          "Melhorias",
+          "Back-end"
         ]
       },
       {
@@ -57,22 +113,12 @@
         ]
       },
       {
-        "id": 9,
-        "columnId": "column-4",
-        "title": "Sucesooooo",
-        "description": "Tudo funcionando",
+        "id": 13,
+        "columnId": "column-3",
+        "title": "Versão inicial finalizada",
+        "description": "",
         "tags": [
-          "Testess"
-        ]
-      },
-      {
-        "id": 11,
-        "columnId": "column-1",
-        "title": "Optimização do Back-end",
-        "description": "Criação de um back-end em Node.js",
-        "tags": [
-          "Melhorias",
-          "Back-end"
+          "Primeira versão"
         ]
       },
       {
@@ -82,6 +128,15 @@
         "description": "Realização de testes unitários",
         "tags": [
           "Melhorias"
+        ]
+      },
+      {
+        "id": 14,
+        "columnId": "column-4",
+        "title": "Teste do sucesso!!",
+        "description": "",
+        "tags": [
+          "Ihuul"
         ]
       }
     ]

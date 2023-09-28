@@ -1,12 +1,16 @@
 .home {
     display: flex;
     flex-direction: column;
+    background: #E1E8ED;
+    background-image: url('src/assets/images/Background Scene.png');
+    background-repeat: no-repeat;
+    background-position: bottom 10px right 20px;
+    min-height: 100vh;
 }
 
 .home-title {
     margin: 40px 40px 20px;
-    font-family: AvenirNextBold;
-    font-weight: 700;
+    font-family: var(--fontBold);
     color: #212529;
     font-size: 32px;
     letter-spacing: -0.64px;

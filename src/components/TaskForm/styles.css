@@ -3,12 +3,10 @@
     background: #F7F7F7;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.08);
     padding: 32px 64px;
-    font-family: AvenirNext;
 }
 
 .form h2 {
     color: #212121;
-    font-family: AvenirNext;
     font-size: 32px;
     font-weight: 400;
 }

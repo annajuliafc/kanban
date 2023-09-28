@@ -10,18 +10,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ColumnFormModal from "../ColumnForm";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { IconButton, Tooltip } from "@mui/material";
-
-export default function Column({
-  column,
-  title,
-  color,
-  tasks,
-  editTask,
-  deleteTask,
-  createTask,
-  editColumn,
-  deleteColumn,
-}) {
+export default function Column({ column, title, color, tasks }) {
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
@@ -57,7 +46,6 @@ export default function Column({
     background: "none",
     border: "none",
     color: "rgba(255, 255, 255, 0.8)",
-    fontFamily: "AvenirNext",
     fontSize: "16px",
     textAlignLast: "start",
     display: "flex",
@@ -84,13 +72,7 @@ export default function Column({
           <SortableContext items={tasksIds}>
             <div className="tasks">
               {tasks.map((task) => (
-                <Task
-                  key={task.id}
-                  task={task}
-                  color={color}
-                  deleteTask={deleteTask}
-                  editTask={editTask}
-                />
+                <Task key={task.id} task={task} color={color} />
               ))}
             </div>
           </SortableContext>
@@ -108,11 +90,7 @@ export default function Column({
         fullWidth={true}
         maxWidth="sm"
       >
-        <TaskForm
-          createTask={createTask}
-          columnId={column.id}
-          color={color}
-        ></TaskForm>
+        <TaskForm columnId={column.id} color={color}></TaskForm>
       </Dialog>
       <Dialog
         open={openColumnForm}
@@ -120,11 +98,7 @@ export default function Column({
         fullWidth={true}
         maxWidth="sm"
       >
-        <ColumnFormModal
-          editColumn={editColumn}
-          deleteColumn={deleteColumn}
-          column={column}
-        />
+        <ColumnFormModal column={column} />
       </Dialog>
     </section>
   );
@@ -135,9 +109,4 @@ Column.propTypes = {
   title: PropTypes.string.isRequired,
   color: PropTypes.string,
   tasks: PropTypes.array.isRequired,
-  editTask: PropTypes.func,
-  deleteTask: PropTypes.func,
-  createTask: PropTypes.func,
-  editColumn: PropTypes.func,
-  deleteColumn: PropTypes.func,
 };

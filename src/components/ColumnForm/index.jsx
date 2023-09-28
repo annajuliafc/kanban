@@ -6,13 +6,10 @@ import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import useBoardContext from "../../context/BoardContext/useBoardContext";
 
-export default function ColumnForm({
-  editColumn,
-  deleteColumn,
-  createColumn,
-  column,
-}) {
+export default function ColumnForm({ column }) {
+  const { createColumn, editColumn, deleteColumn } = useBoardContext();
   const [title, setTitle] = useState(column?.title || "");
   const [color, setColor] = useState(column?.color || "#0000ff");
   const [taskIds, setTaskIds] = useState(column?.taskIds || []);
@@ -26,7 +23,6 @@ export default function ColumnForm({
     background: "#662549",
     border: "none",
     color: "white",
-    fontFamily: "AvenirNext",
     fontSize: "16px",
     borderRadius: "8px",
     padding: "16px",
@@ -37,7 +33,6 @@ export default function ColumnForm({
     background: "none",
     border: "2px solid #662549",
     color: "#662549",
-    fontFamily: "AvenirNext",
     fontSize: "16px",
     borderRadius: "8px",
     padding: "16px",
@@ -52,7 +47,7 @@ export default function ColumnForm({
 
   const onSave = (event) => {
     event.preventDefault();
-    editColumn
+    column
       ? editColumn({
           id,
           title,
@@ -65,18 +60,14 @@ export default function ColumnForm({
           color,
           taskIds,
         });
-    !editColumn && setTitle("");
-    !editColumn && setColor("#0000ff");
-    !editColumn && setTaskIds([]);
-  };
-
-  const columnDelete = () => {
-    deleteColumn(column.id);
+    !column && setTitle("");
+    !column && setColor("#0000ff");
+    !column && setTaskIds([]);
   };
 
   return (
     <form className="form" onSubmit={onSave}>
-      {editColumn ? (
+      {column ? (
         <h2>Vizualizar coluna</h2>
       ) : (
         <h2>Preencha os dados para criar uma nova coluna de tarefas</h2>
@@ -97,14 +88,14 @@ export default function ColumnForm({
         changed={(value) => setColor(value)}
       />
       <div className="form-action">
-        {editColumn ? (
+        {column ? (
           <Button
             buttonCssStyle={deleteButtonCssStyle}
             type="button"
             text="Excluir"
             icon={<DeleteIcon sx={{ color: "#662549" }} fontSize="small" />}
             iconCss={iconCss}
-            clickFunction={columnDelete}
+            clickFunction={() => deleteColumn(column.id)}
           />
         ) : (
           ""
@@ -113,13 +104,13 @@ export default function ColumnForm({
           buttonCssStyle={buttonCssStyle}
           iconCss={iconCss}
           icon={
-            editColumn ? (
+            column ? (
               <EditIcon sx={{ color: "white" }} fontSize="small" />
             ) : (
               <SaveIcon sx={{ color: "white" }} fontSize="small" />
             )
           }
-          text={editColumn ? "Editar " : "Salvar "}
+          text={column ? "Editar " : "Salvar "}
         />
       </div>
     </form>
@@ -127,8 +118,5 @@ export default function ColumnForm({
 }
 
 ColumnForm.propTypes = {
-  editColumn: PropTypes.func,
-  deleteColumn: PropTypes.func,
-  createColumn: PropTypes.func,
   column: PropTypes.object,
 };
